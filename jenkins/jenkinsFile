@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Unit Tests - Backend') {
             steps {
-                dir('bugtracker-backed') {
+                dir('bugtracker-backend') {
                     sh 'go test -v ./...'
                 }
             }
