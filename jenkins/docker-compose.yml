@@ -4,7 +4,7 @@ services:
     container_name: jenkins-docker
     privileged: true
     environment:
-      - DOCKER_TLS_CERTDIR=  
+      - DOCKER_TLS_CERTDIR=
       # /certs
     volumes:
       - jenkins-docker-certs:/certs/client
@@ -23,7 +23,7 @@ services:
     container_name: my-jenkins
     restart: on-failure
     environment:
-      -DOCKER_HOST=tcp://docker:2375
+      - DOCKER_HOST=tcp://docker:2375
       - JAVA_OPTS=-Dhudson.model.DirectoryBrowserSupport.CSP="default-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
       # - DOCKER_HOST=tcp://docker:2376
       # - DOCKER_CERT_PATH=/certs/client
