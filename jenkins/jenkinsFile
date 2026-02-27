@@ -77,9 +77,8 @@ pipeline {
                         }
                     }
                     steps {
-                        sh 'npx wait-port http://localhost:8080/api/health -t 30000'
-
                         sh 'npm ci'
+                        sh 'npx wait-port http://localhost:8080/api/health -t 30000'
                         sh 'npx playwright test'
                     }
                 }
