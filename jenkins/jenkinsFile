@@ -69,20 +69,33 @@ pipeline {
             }
         }
 
-        stage('API-Tests') {
+        // stage('API-Tests') {
+        //     agent {
+        //         docker {
+        //             image 'mcr.microsoft.com/playwright:v1.50.0-jammy'
+        //             reuseNode true
+        //             args '-u 0 --network=host'
+        //         }
+        //     }
+        //     steps {
+        //         dir('tests-api') {
+        //             sh 'npx wait-port http://localhost:8080/api/health -t 30000'                    
+        //             sh 'npm ci'
+        //             sh 'npx playwright test'
+        //         }
+        //     }
+        // }
+        stage('Performance Tests') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.50.0-jammy'
+                    image 'grafana/k6:latest'
                     reuseNode true
-                    args '--network=bugtracker_bugtracker -u 0'
-                    // args '-u 0 --network=host'
+                    arg '--network=host - root --entrypoint=""'
                 }
             }
             steps {
-                dir('tests-api') {
-                    sh 'npx wait-port http://backend:8080/api/health -t 30000'
-                    sh 'npm ci'
-                    sh 'npx playwright test'
+                dir('tests-perf') {
+                    sh 'k6 run script.js'
                 }
             }
         }
