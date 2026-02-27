@@ -90,7 +90,7 @@ pipeline {
                 docker {
                     image 'grafana/k6:latest'
                     reuseNode true
-                    arg '--network=host - root --entrypoint=""'
+                    args '--network=host - root --entrypoint=""'
                 }
             }
             steps {
