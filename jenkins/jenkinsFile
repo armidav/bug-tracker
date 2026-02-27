@@ -54,34 +54,33 @@ pipeline {
                         }
                     }
                 }
-
-                stage('Launch Application') {
-                    agent {
-                        docker {
-                            image 'docker:27.5.1'
-                            reuseNode true
-                            args '-v /var/run/docker.sock:/var/run/docker.sock -u 0'
-                        }
-                    }
-                    steps {
-                        sh 'docker compose up --build -d'
-                    }
+            }
+        }
+        stage('Launch Application') {
+            agent {
+                docker {
+                    image 'docker:27.5.1'
+                    reuseNode true
+                    args '-v /var/run/docker.sock:/var/run/docker.sock -u 0'
                 }
+            }
+            steps {
+                sh 'docker compose up --build -d'
+            }
+        }
 
-                stage('API-Tests') {
-                    agent {
-                        docker {
-                            image 'mcr.microsoft.com/playwright:v1.50.0-jammy'
-                            reuseNode true
-                            args '-u 0 --network=host'
-                        }
-                    }
-                    steps {
-                        sh 'npm ci'
-                        sh 'npx wait-port http://localhost:8080/api/health -t 30000'
-                        sh 'npx playwright test'
-                    }
+        stage('API-Tests') {
+            agent {
+                docker {
+                    image 'mcr.microsoft.com/playwright:v1.50.0-jammy'
+                    reuseNode true
+                    args '-u 0 --network=host'
                 }
+            }
+            steps {
+                sh 'npm ci'
+                sh 'npx wait-port http://localhost:8080/api/health -t 30000'
+                sh 'npx playwright test'
             }
         }
     }
