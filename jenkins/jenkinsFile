@@ -80,7 +80,7 @@ pipeline {
             }
             steps {
                 dir('tests-api') {
-                    sh 'npx wait-port http://bugtracker-backend:8080/api/health -t 30000'
+                    sh 'npx wait-port http://backend:8080/api/health -t 30000'
                     sh 'npm ci'
                     sh 'npx playwright test'
                 }
