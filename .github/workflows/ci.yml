@@ -98,7 +98,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Create Backend Coverage Comment
-        uses: armidav/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
@@ -107,7 +107,7 @@ jobs:
             ${{ needs.unit-tests-backend.outputs.coverage }}
             ```
       - name: Create Frontend Coverage Comment
-        uses: armidav/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
