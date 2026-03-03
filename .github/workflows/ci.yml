@@ -129,7 +129,7 @@ jobs:
           npx wait-port http://localhost:8081/api/health -t 30000
 
       - name: Run API Tests
-        workng-directory: ./tests-api
+        working-directory: ./tests-api
         run: |
           npm ci
           npx playwright test
