@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch: 
 
 jobs:
@@ -12,7 +15,7 @@ jobs:
     outputs:
       coverage: ${{ steps.test-backend.outputs.report }}
     steps:
-      - uses: actions/checkout@v4 ##comment
+      - uses: actions/checkout@v4
 
       - name: Set up Go
         uses: actions/setup-go@v4
