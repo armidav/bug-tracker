@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch: 
 
 jobs:
@@ -12,7 +15,7 @@ jobs:
     outputs:
       coverage: ${{ steps.test-backend.outputs.report }}
     steps:
-      - uses: actions/checkout@v4 ##comment
+      - uses: actions/checkout@v4
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -95,7 +98,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Create Backend Coverage Comment
-        uses: armidav/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
@@ -104,7 +107,7 @@ jobs:
             ${{ needs.unit-tests-backend.outputs.coverage }}
             ```
       - name: Create Frontend Coverage Comment
-        uses: armidav/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
