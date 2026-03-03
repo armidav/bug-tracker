@@ -112,8 +112,3 @@ jobs:
             ```
             ${{ needs.unit-tests-frontend.outputs.coverage }}
             ```
-          body: |
-            ## Frontend Test Coverage Report
-            ```
-            ${{ needs.unit-tests-frontend.outputs.coverage }}
-            ```
