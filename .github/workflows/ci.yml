@@ -12,7 +12,7 @@ jobs:
     outputs:
       coverage: ${{ steps.test-backend.outputs.report }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4 ##comment
 
       - name: Set up Go
         uses: actions/setup-go@v4
