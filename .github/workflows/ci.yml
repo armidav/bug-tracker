@@ -126,4 +126,4 @@ jobs:
       - name: Launch Apllication
         run: |
           docker compose up --build -d
-          npx wait-port http://localhost:8080/api/health -t 30000
+          npx wait-port http://localhost:8081/api/health -t 30000
