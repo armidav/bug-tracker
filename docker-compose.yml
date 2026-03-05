@@ -6,6 +6,8 @@ services:
   frontend:
     build:
       context: ./bugtracker-frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8081
     ports:
       - "3000:3000"
     environment:
